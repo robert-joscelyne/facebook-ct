@@ -1,5 +1,5 @@
 <template>
-    <div>This is the start component</div>
+
 </template>
 
 <script>
