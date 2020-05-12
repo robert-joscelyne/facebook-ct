@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Post;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -17,8 +19,8 @@ class UserCanViewProfileTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs($user = factory(\App\User::class)->create(), 'api');
-        $posts = factory(\App\Post::class)->create();
+        $this->actingAs($user = factory(User::class)->create(), 'api');
+        $posts = factory(Post::class)->create();
 
         $response = $this->get('/api/users/' . $user->id);
 
@@ -45,8 +47,8 @@ class UserCanViewProfileTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs($user = factory(\App\User::class)->create(), 'api');
-        $post = factory(\App\Post::class)->create(['user_id' => $user->id]);
+        $this->actingAs($user = factory(User::class)->create(), 'api');
+        $post = factory(Post::class)->create(['user_id' => $user->id]);
 
         $response = $this->get('/api/users/' . $user->id . '/posts');
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Friend as FriendResource;
+use App\Friend;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class User extends JsonResource
@@ -9,7 +12,7 @@ class User extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -19,7 +22,8 @@ class User extends JsonResource
                 'type' => 'users',
                 'id' => $this->id,
                 'attributes' => [
-                    'name' => $this->name
+                    'name' => $this->name,
+                    'friendship' => new FriendResource(Friend::friendship($this->id))
                 ]
             ],
             'links' => [

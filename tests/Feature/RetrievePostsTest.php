@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Post;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -17,8 +19,8 @@ class RetrievePostsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs($user = factory(\App\User::class)->create(), 'api');
-        $posts = factory(\App\Post::class, 2)->create(
+        $this->actingAs($user = factory(User::class)->create(), 'api');
+        $posts = factory(Post::class, 2)->create(
             [
                 'user_id' => $user->id,
             ]
@@ -66,8 +68,8 @@ class RetrievePostsTest extends TestCase
      */
     public function  a_user_can_only_retrieve_their_posts()
     {
-        $this->actingAs($user = factory(\App\User::class)->create(), 'api');
-        $posts = factory(\App\Post::class)->create();
+        $this->actingAs($user = factory(User::class)->create(), 'api');
+        $posts = factory(Post::class)->create();
 
         $response = $this->get('/api/posts');
 
