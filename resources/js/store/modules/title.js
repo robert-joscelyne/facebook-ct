@@ -10,7 +10,7 @@ const getters = {
 
 const actions = {
     setPageTitle({commit, state}, title) {
-        commit('setTitle', title)
+        commit('setTitle', title);
     }
 };
 

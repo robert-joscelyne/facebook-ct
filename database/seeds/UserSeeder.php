@@ -25,11 +25,13 @@ class UserSeeder extends Seeder
 
     private function populate()
     {
-        $posts = factory(User::class, 1)->create(
+        $primaryUser = factory(User::class, 1)->create(
             [
                 'name' => 'Robert Joscelyne',
                 'email' => 'robert.joscelyne@gmail.com'
             ]
         );
+
+        $friends = factory(User::class, 5)->create();
     }
 }

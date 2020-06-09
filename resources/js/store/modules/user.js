@@ -10,23 +10,25 @@ const getters = {
 };
 
 const actions = {
-    fetchAuthUser({commit,state}) {
+    fetchAuthUser({commit, state}) {
         axios.get('/api/auth-user')
             .then(res => {
+                console.log('setAuthUser');
+                console.log(res);
                 commit('setAuthUser', res.data);
             })
             .catch(error => {
-                console.log('Unable to fetch user');
+                console.log('Unable to fetch auth user');
             });
     }
 };
 
 const mutations = {
     setAuthUser(state, user) {
-        state.user = user
+        state.user = user;
     }
 };
 
 export default {
-    state, getters, actions, mutations
+    state, getters, actions, mutations,
 }

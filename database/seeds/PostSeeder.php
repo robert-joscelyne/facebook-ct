@@ -25,10 +25,15 @@ class PostSeeder extends Seeder
 
     private function populate()
     {
-        $posts = factory(Post::class, 5)->create(
-            [
-                'user_id' => 1
-            ]
-        );
+        $users = \App\User::get();
+        foreach($users as $user)
+        {
+            $posts = factory(Post::class, 5)->create(
+                [
+                    'user_id' => $user->id
+                ]
+            );
+        }
+
     }
 }
